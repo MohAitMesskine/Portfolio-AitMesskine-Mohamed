@@ -1,10 +1,12 @@
 import React from 'react';
 import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
 import { scrollToSection } from '../utils/scrollToSection';
+import { useLanguage } from '../context/LanguageContext';
 import myImage from '../assets/me.jpg';
 
 
 const Hero: React.FC = () => {
+  const { tr } = useLanguage();
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
       {/* Background gradient */}
@@ -39,14 +41,16 @@ const Hero: React.FC = () => {
               </span>
             </h1>
             <h2 className="text-xl sm:text-2xl lg:text-3xl text-gray-600 dark:text-gray-300 font-light">
-              Full-Stack Software Engineer
+              {tr('Full-Stack Developer & QA Engineer', 'Développeur Full-Stack & Ingénieur QA')}
             </h2>
           </div>
 
           {/* Introduction */}
           <p className="max-w-2xl mx-auto text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
-            Passionate about creating innovative solutions that bridge the gap between design and technology. 
-            Building scalable applications with modern frameworks and clean, maintainable code.
+            {tr(
+              'I build full-stack web applications and help ensure their quality through thoughtful test automation. Currently preparing for the ISTQB Certified Tester Foundation Level (CTFL) exam.',
+              'Je développe des applications web Full-Stack et veille à leur qualité grâce à l’automatisation des tests. Je prépare actuellement la certification ISTQB Certified Tester Foundation Level (CTFL).'
+            )}
           </p>
 
           {/* Social Links */}
@@ -87,13 +91,13 @@ const Hero: React.FC = () => {
               onClick={() => scrollToSection('projects')}
               className="px-8 py-4 bg-gradient-to-r from-blue-600 to-emerald-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-emerald-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
             >
-              View My Projects
+              {tr('View My Projects', 'Voir mes projets')}
             </button>
             <button
               onClick={() => scrollToSection('contact')}
               className="px-8 py-4 border-2 border-blue-600 text-blue-600 dark:text-blue-400 font-semibold rounded-lg hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transform hover:scale-105 transition-all duration-200"
             >
-              Contact Me
+              {tr('Contact Me', 'Me contacter')}
             </button>
           </div>
         </div>

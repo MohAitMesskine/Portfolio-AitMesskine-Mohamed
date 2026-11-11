@@ -1,17 +1,22 @@
 import React from 'react';
-import { Code, Palette, Database, Cloud, Smartphone, PenTool as Tool, Globe, Zap } from 'lucide-react';
+import { Code, Palette, Database, Cloud, Smartphone, PenTool as Tool, Globe, Zap, ShieldCheck, BookOpen } from 'lucide-react';
+import javaCertificate from '../assets/java.png';
+import qualitySoftwareCertificate from '../assets/quality_software.png';
+import anthropicCertificate from '../assets/anthropic.png';
+import { useLanguage } from '../context/LanguageContext';
 
 interface SkillCategory {
   title: string;
   icon: React.ReactNode;
   skills: Array<{
     name: string;
-    level: number;
-    color: string;
+    level?: number;
+    color?: string;
   }>;
 }
 
 const Skills: React.FC = () => {
+  const { tr } = useLanguage();
   const skillCategories: SkillCategory[] = [
     {
       title: "Frontend Development",
@@ -67,6 +72,17 @@ const Skills: React.FC = () => {
         { name: "Git", level: 95, color: "bg-orange-600" },
         { name: "Figma", level: 80, color: "bg-purple-500" },
       ]
+    },
+    {
+      title: "Quality Assurance",
+      icon: <ShieldCheck className="w-6 h-6" />,
+      skills: [
+        { name: "Robot Framework", level: 85, color: "bg-purple-600" },
+        { name: "API Testing", level: 85, color: "bg-blue-600" },
+        { name: "Functional Testing", level: 82, color: "bg-emerald-600" },
+        { name: "Test Design", level: 80, color: "bg-orange-500" },
+        { name: "ISTQB CTFL (in preparation)" }
+      ]
     }
   ];
 
@@ -82,12 +98,14 @@ const Skills: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Technical Skills
+            {tr('Skills, Certifications & Education', 'Compétences, certifications et formation')}
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-emerald-600 mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            A comprehensive overview of my technical expertise across different domains, 
-            from frontend frameworks to cloud infrastructure.
+            {tr(
+              'Full-stack engineering, test automation, and my academic and professional qualifications.',
+              'Ingénierie Full-Stack, automatisation des tests et parcours académique et professionnel.'
+            )}
           </p>
         </div>
 
@@ -123,27 +141,37 @@ const Skills: React.FC = () => {
                   {category.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  {category.title}
+                  {tr(category.title, ({
+                    'Frontend Development': 'Développement Front-end',
+                    'Backend Development': 'Développement Back-end',
+                    'Database & Storage': 'Bases de données et stockage',
+                    'Cloud & DevOps': 'Cloud et DevOps',
+                    'Mobile Development': 'Développement mobile',
+                    'Tools & Others': 'Outils et autres',
+                    'Quality Assurance': 'Assurance qualité'
+                  } as Record<string, string>)[category.title] ?? category.title)}
                 </h3>
               </div>
 
               <div className="space-y-4">
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skillIndex}>
-                    <div className="flex justify-between items-center mb-2">
+                    <div className={`flex justify-between items-center ${skill.level === undefined ? '' : 'mb-2'}`}>
                       <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                        {skill.name}
+                        {tr(skill.name, skill.name === 'ISTQB CTFL (in preparation)' ? 'ISTQB CTFL (en préparation)' : skill.name)}
                       </span>
-                      <span className="text-xs text-gray-500 dark:text-gray-400">
-                        {skill.level}%
-                      </span>
+                      {skill.level !== undefined && (
+                        <span className="text-xs text-gray-500 dark:text-gray-400">{skill.level}%</span>
+                      )}
                     </div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                      <div 
-                        className={`h-2 rounded-full ${skill.color} transition-all duration-1000 ease-out`}
-                        style={{ width: `${skill.level}%` }}
-                      ></div>
-                    </div>
+                    {skill.level !== undefined && (
+                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                        <div
+                          className={`h-2 rounded-full ${skill.color} transition-all duration-1000 ease-out`}
+                          style={{ width: `${skill.level}%` }}
+                        ></div>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -151,27 +179,107 @@ const Skills: React.FC = () => {
           ))}
         </div>
 
-        {/* Certifications */}
         <div className="mt-16 text-center">
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
-            Certifications & Achievements
+            {tr('Certifications', 'Certifications')}
           </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             {[
-              "Coursera Certificate: Engineering Practices for Building Quality Software",
-           
-            ].map((cert, index) => (
+              {
+                title: "Oracle Certified Professional: Java SE 21 Developer (2026)",
+                image: javaCertificate,
+                alt: "Oracle Certified Professional Java SE 21 Developer certificate"
+              },
+              {
+                title: "Engineering Practices for Building Quality Software — Coursera (2025)",
+                image: qualitySoftwareCertificate,
+                alt: "Engineering Practices for Building Quality Software certificate"
+              },
+              {
+                title: "Anthropic AI Agent",
+                image: anthropicCertificate,
+                alt: "Anthropic AI Agent"
+              }
+            ].map((cert) => (
               <div 
-                key={index}
+                key={cert.title}
                 className="bg-white dark:bg-gray-900 p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
               >
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">
-                  ✓
-                </div>
-                <p className="text-sm font-medium text-gray-800 dark:text-gray-200">
-                  {cert}
-                </p>
+                <img
+                  src={cert.image}
+                  alt={cert.alt}
+                  className="w-full h-48 object-contain mb-4"
+                  loading="lazy"
+                />
+                <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-200">
+                  {cert.title === "Oracle Certified Professional: Java SE 21 Developer (2026)"
+                    ? tr(cert.title, "Oracle Certified Professional : Développeur Java SE 21 (2026)")
+                    : cert.title === "Engineering Practices for Building Quality Software — Coursera (2025)"
+                      ? tr(cert.title, "Pratiques d’ingénierie pour la qualité logicielle — Coursera (2025)")
+                      : cert.title}
+                </h4>
               </div>
+            ))}
+          </div>
+          <p className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-blue-700 dark:text-blue-300">
+            <BookOpen className="w-4 h-4" />
+            {tr(
+              'Currently preparing for the ISTQB Certified Tester Foundation Level (CTFL) exam',
+              'Préparation en cours à l’examen ISTQB Certified Tester Foundation Level (CTFL)'
+            )}
+          </p>
+        </div>
+
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold text-center text-gray-900 dark:text-white mb-8">
+            {tr('Education', 'Formation')}
+          </h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                institution: "Université Cadi Ayyad",
+                degree: "Master's in Information Systems Engineering",
+                period: "2024–2026",
+                location: "Marrakech, Morocco"
+              },
+              {
+                institution: "Université Ibn Zohr",
+                degree: "Bachelor's in Mathematical Sciences and Computer Science",
+                period: "2022–2024",
+                location: "Agadir, Morocco"
+              },
+              {
+                institution: "École Supérieure de Technologie",
+                degree: "University Diploma of Technology (DUT) in Computer Engineering",
+                period: "2020–2022",
+                location: "Meknès, Morocco"
+              }
+            ].map((education) => (
+              <article
+                key={education.institution}
+                className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg text-left"
+              >
+                <p className="text-sm font-semibold text-blue-600 dark:text-blue-400">
+                  {education.period}
+                </p>
+                <h4 className="mt-2 text-lg font-bold text-gray-900 dark:text-white">
+                  {education.institution}
+                </h4>
+                <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                  {tr(education.degree, ({
+                    "Master's in Information Systems Engineering": "Master en ingénierie des systèmes d’information",
+                    "Bachelor's in Mathematical Sciences and Computer Science": "Licence en sciences mathématiques et informatique",
+                    "University Diploma of Technology (DUT) in Computer Engineering": "DUT en génie informatique"
+                  } as Record<string, string>)[education.degree] ?? education.degree)}
+                </p>
+                <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                  {tr(education.location, ({
+                    "Marrakech, Morocco": "Marrakech, Maroc",
+                    "Agadir, Morocco": "Agadir, Maroc",
+                    "Meknès, Morocco": "Meknès, Maroc"
+                  } as Record<string, string>)[education.location] ?? education.location)}
+                </p>
+              </article>
             ))}
           </div>
         </div>

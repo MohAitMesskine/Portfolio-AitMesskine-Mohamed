@@ -1,8 +1,10 @@
 import React from 'react';
 import { ArrowUp, Github, Linkedin, Mail, Heart } from 'lucide-react';
 import { scrollToTop } from '../utils/scrollToSection';
+import { useLanguage } from '../context/LanguageContext';
 
 const Footer: React.FC = () => {
+  const { tr } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -55,19 +57,19 @@ const Footer: React.FC = () => {
           {/* Navigation Links */}
           <div className="flex flex-wrap justify-center gap-8 text-sm">
             <a href="#home" className="text-gray-400 hover:text-white transition-colors">
-              Home
+              {tr('Home', 'Accueil')}
             </a>
             <a href="#about" className="text-gray-400 hover:text-white transition-colors">
-              About
+              {tr('About', 'À propos')}
             </a>
             <a href="#projects" className="text-gray-400 hover:text-white transition-colors">
-              Projects
+              {tr('Projects', 'Projets')}
             </a>
             <a href="#skills" className="text-gray-400 hover:text-white transition-colors">
-              Skills
+              {tr('Skills', 'Compétences')}
             </a>
             <a href="#contact" className="text-gray-400 hover:text-white transition-colors">
-              Contact
+              {tr('Contact', 'Contact')}
             </a>
           </div>
 
@@ -77,18 +79,18 @@ const Footer: React.FC = () => {
           {/* Copyright */}
           <div className="text-center space-y-2">
             <div className="flex items-center justify-center text-gray-400 text-sm">
-              <span>Made with</span>
+              <span>{tr('Made with', 'Créé avec')}</span>
               <Heart className="w-4 h-4 mx-1 text-red-500 animate-pulse" />
-              <span>by Ait Messkine Mohamed</span>
+              <span>{tr('by Ait Messkine Mohamed', 'par Ait Messkine Mohamed')}</span>
             </div>
             <p className="text-gray-500 text-sm">
-              © {currentYear} Ait Messkine Mohamed. All rights reserved.
+              © {currentYear} Ait Messkine Mohamed. {tr('All rights reserved.', 'Tous droits réservés.')}
             </p>
           </div>
 
           {/* Additional Info */}
           <div className="text-center text-xs text-gray-500">
-            <p>Built with React, TypeScript, and Tailwind CSS</p>
+            <p>{tr('Built with React, TypeScript, and Tailwind CSS', 'Réalisé avec React, TypeScript et Tailwind CSS')}</p>
           </div>
         </div>
       </div>

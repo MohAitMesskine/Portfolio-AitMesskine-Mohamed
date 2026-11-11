@@ -6,23 +6,40 @@ import event from '../assets/event.png';
 import park from '../assets/park.png';
 import school from '../assets/school.png';
 import tax from '../assets/tax.png';
+import robotFramework from '../assets/robotframwork.png';
+import { useLanguage } from '../context/LanguageContext';
 interface Project {
   id: number;
-  title: string;
-  description: string;
+  title: { en: string; fr: string };
+  description: { en: string; fr: string };
   image: string;
   technologies: string[];
   githubUrl: string;
-  liveUrl: string;
-  date: string;
+  liveUrl?: string;
+  date?: string;
 }
 
 const Projects: React.FC = () => {
+  const { language, tr } = useLanguage();
   const projects: Project[] = [
     {
+      id: 7,
+      title: { en: "MyJobs Maroc — Test Automation", fr: "MyJobs Maroc — Automatisation des tests" },
+      description: {
+        en: "Automated API and functional testing for a Moroccan recruitment platform using Robot Framework. The suite reports 35/35 tests passed (100%) across job search, candidate authentication and applications, admin and employee workflows, Elasticsearch integration, and role-based permissions. Tests run against isolated temporary environments and generate HTML and XML reports.",
+        fr: "Automatisation des tests API et fonctionnels d’une plateforme marocaine de recrutement avec Robot Framework. La suite affiche 35 tests réussis sur 35 (100 %) et couvre la recherche d’emploi, l’authentification et les candidatures, les parcours administrateur et employé, Elasticsearch et les permissions par rôle. Les tests utilisent des environnements temporaires isolés et génèrent des rapports HTML et XML."
+      },
+      image: robotFramework,
+      technologies: ["Robot Framework", "Python", "RequestsLibrary", "REST API", "Elasticsearch"],
+      githubUrl: "https://github.com/MohAitMesskine/jobs-robot_Framework"
+    },
+    {
       id: 1,
-      title: "Internship Management Platform",
-      description: "The Internship Management Platform helps schools and companies manage internship offers, student applications, evaluations, and reports in one centralized system. It simplifies coordination between students, supervisors, and administrators.",
+      title: { en: "Internship Management Platform", fr: "Plateforme de gestion des stages" },
+      description: {
+        en: "The Internship Management Platform helps schools and companies manage internship offers, student applications, evaluations, and reports in one centralized system. It simplifies coordination between students, supervisors, and administrators.",
+        fr: "Une plateforme centralisée permettant aux écoles et aux entreprises de gérer les offres de stage, les candidatures, les évaluations et les rapports, tout en facilitant la coordination entre étudiants, encadrants et administrateurs."
+      },
       image: stage,
       technologies: ["React", "Spring boot", "Mysql", "Tailwind CSS"],
       githubUrl: "https://github.com/MohAitMesskine/manage-tax",
@@ -31,8 +48,11 @@ const Projects: React.FC = () => {
     },
     {
       id: 2,
-      title: "Chatroom Application",
-      description: "The Chatroom Application is a real-time messaging platform that allows users to join chat rooms, send and receive messages instantly, and communicate in a user-friendly environment. It supports multiple users and ensures smooth and secure interactions.",
+      title: { en: "Chatroom Application", fr: "Application de chat en temps réel" },
+      description: {
+        en: "A real-time messaging platform where users can join chat rooms, send and receive messages instantly, and communicate in a user-friendly environment.",
+        fr: "Une plateforme de messagerie en temps réel où les utilisateurs peuvent rejoindre des salons de discussion, échanger instantanément et communiquer dans une interface conviviale."
+      },
       image: chat,
       technologies: ["Spring boot", "JavaSript", "Mysql"],
       githubUrl: "https://github.com/MohAitMesskine/chatRoom",
@@ -41,8 +61,11 @@ const Projects: React.FC = () => {
     },
     {
       id: 3,
-      title: " Event Management System",
-      description: "The Event Management System is a platform that helps organize, manage, and track events. It allows users to create events, handle registrations, send notifications, and monitor participation in a simple and efficient way.",
+      title: { en: "Event Management System", fr: "Système de gestion d’événements" },
+      description: {
+        en: "A platform to organize and track events, manage registrations, send notifications, and monitor participation.",
+        fr: "Une plateforme pour organiser et suivre des événements, gérer les inscriptions, envoyer des notifications et suivre la participation."
+      },
       image: event,
       technologies: ["Laravel", "Vue", "Mysql"],
       githubUrl: "https://github.com/amina-moueddene/Evenement_Marrakech",
@@ -51,8 +74,11 @@ const Projects: React.FC = () => {
     },
     {
       id: 4,
-      title: "School Management System",
-      description: "The School Management System is a web app that helps schools manage students, teachers, classes, grades, and attendance. It improves organization, reduces paperwork, and makes communication easier for all users.",
+      title: { en: "School Management System", fr: "Système de gestion scolaire" },
+      description: {
+        en: "A web application that helps schools manage students, teachers, classes, grades, and attendance.",
+        fr: "Une application web permettant aux établissements de gérer les élèves, enseignants, classes, notes et présences."
+      },
       image:school,
       technologies: ["Vue Js", "Mysql", "Laravel"],
       githubUrl: "https://github.com/MohAitMesskine/Gestion-Scolaire",
@@ -61,8 +87,11 @@ const Projects: React.FC = () => {
     },
     {
       id: 5,
-      title: "Manage tax Platform",
-      description: "Manage Tax Platform is a digital solution designed to streamline tax management, ensure compliance, and simplify filing and payment processes for businesses.",
+      title: { en: "Tax Management Platform", fr: "Plateforme de gestion fiscale" },
+      description: {
+        en: "A digital solution designed to streamline tax management, ensure compliance, and simplify filing and payment processes for businesses.",
+        fr: "Une solution numérique qui simplifie la gestion fiscale, favorise la conformité et facilite les déclarations et paiements des entreprises."
+      },
       image: tax,
       technologies: ["Vue", "Mysql", "Laravel", "Bootstrap"],
       githubUrl: "https://github.com/MohAitMesskine/manage-tax",
@@ -71,8 +100,11 @@ const Projects: React.FC = () => {
     },
     {
       id: 6,
-      title: "Automated Parking System",
-      description: "The Automated Parking System is a smart solution that manages parking spaces, monitors vehicle entry and exit, and optimizes space usage. It improves efficiency, reduces manual work, and enhances user convenience",
+      title: { en: "Automated Parking System", fr: "Système de stationnement automatisé" },
+      description: {
+        en: "A smart solution that manages parking spaces, monitors vehicle entry and exit, and optimizes space usage.",
+        fr: "Une solution intelligente qui gère les places de stationnement, surveille les entrées et sorties des véhicules et optimise l’utilisation de l’espace."
+      },
       image: park,
       technologies: ["TensorFlow", "OpenCV", "Django"],
       githubUrl: "https://github.com/ParkiBrain-PFE/ParkiBrain-AI",
@@ -86,12 +118,14 @@ const Projects: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Recent Projects
+            {tr('Recent Projects', 'Projets récents')}
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-emerald-600 mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Here are some of my recent projects that showcase my skills and passion for creating 
-            innovative solutions across different domains and technologies.
+            {tr(
+              'Here are some of my recent projects that showcase my skills and passion for creating innovative solutions across different domains and technologies.',
+              'Découvrez quelques projets qui illustrent mes compétences et mon intérêt pour la création de solutions innovantes avec différentes technologies.'
+            )}
           </p>
         </div>
 
@@ -105,24 +139,26 @@ const Projects: React.FC = () => {
               <div className="relative overflow-hidden">
                 <img
                   src={project.image}
-                  alt={project.title}
+                  alt={project.title[language]}
                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute top-4 right-4 bg-white dark:bg-gray-800 px-2 py-1 rounded-full text-xs font-medium text-gray-600 dark:text-gray-400 flex items-center">
-                  <Calendar className="w-3 h-3 mr-1" />
-                  {project.date}
-                </div>
+                {project.date && (
+                  <div className="absolute top-4 right-4 bg-white dark:bg-gray-800 px-2 py-1 rounded-full text-xs font-medium text-gray-600 dark:text-gray-400 flex items-center">
+                    <Calendar className="w-3 h-3 mr-1" />
+                    {project.date}
+                  </div>
+                )}
               </div>
 
               {/* Project Content */}
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                  {project.title}
+                  {project.title[language]}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
-                  {project.description}
+                  {project.description[language]}
                 </p>
 
                 {/* Technologies */}
@@ -146,17 +182,19 @@ const Projects: React.FC = () => {
                     className="flex-1 flex items-center justify-center px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-sm font-medium"
                   >
                     <Github className="w-4 h-4 mr-2" />
-                    Code
+                    {tr('Code', 'Code')}
                   </a>
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm font-medium"
-                  >
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Demo
-                  </a>
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 flex items-center justify-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm font-medium"
+                    >
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      {tr('Demo', 'Démo')}
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -172,7 +210,7 @@ const Projects: React.FC = () => {
             className="inline-flex items-center px-8 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 font-semibold rounded-lg hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transform hover:scale-105 transition-all duration-200"
           >
             <Github className="w-5 h-5 mr-2" />
-            View All Projects on GitHub
+            {tr('View All Projects on GitHub', 'Voir tous les projets sur GitHub')}
           </a>
         </div>
       </div>

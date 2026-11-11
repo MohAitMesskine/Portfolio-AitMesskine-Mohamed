@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, CheckCircle, AlertCircle } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface FormData {
   name: string;
@@ -16,6 +17,7 @@ interface FormErrors {
 }
 
 const Contact: React.FC = () => {
+  const { tr } = useLanguage();
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -31,23 +33,23 @@ const Contact: React.FC = () => {
     const newErrors: FormErrors = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = tr('Name is required', 'Le nom est obligatoire');
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = tr('Email is required', 'L’adresse e-mail est obligatoire');
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
+      newErrors.email = tr('Please enter a valid email address', 'Veuillez saisir une adresse e-mail valide');
     }
 
     if (!formData.subject.trim()) {
-      newErrors.subject = 'Subject is required';
+      newErrors.subject = tr('Subject is required', 'Le sujet est obligatoire');
     }
 
     if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
+      newErrors.message = tr('Message is required', 'Le message est obligatoire');
     } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters long';
+      newErrors.message = tr('Message must be at least 10 characters long', 'Le message doit contenir au moins 10 caractères');
     }
 
     setErrors(newErrors);
@@ -81,7 +83,7 @@ const Contact: React.FC = () => {
       // For demo purposes, we'll just show success
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch (error) {
+    } catch {
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -97,7 +99,7 @@ const Contact: React.FC = () => {
     },
     {
       icon: <Phone className="w-6 h-6" />,
-      label: 'Phone',
+      label: tr('Phone', 'Téléphone'),
       value: '0699717141',
       href: 'tel:0699717141'
     },
@@ -135,12 +137,14 @@ const Contact: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Get In Touch
+            {tr('Get In Touch', 'Me contacter')}
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-emerald-600 mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            I'm always interested in hearing about new opportunities and exciting projects. 
-            Let's discuss how we can work together to bring your ideas to life.
+            {tr(
+              "I'm always interested in hearing about new opportunities and exciting projects. Let's discuss how we can work together to bring your ideas to life.",
+              'Je suis toujours intéressé par de nouvelles opportunités et des projets stimulants. Échangeons sur la manière de concrétiser vos idées ensemble.'
+            )}
           </p>
         </div>
 
@@ -148,7 +152,7 @@ const Contact: React.FC = () => {
           {/* Contact Form */}
           <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-              Send me a message
+              {tr('Send me a message', 'Envoyez-moi un message')}
             </h3>
 
             {submitStatus && (
@@ -163,8 +167,8 @@ const Contact: React.FC = () => {
                   <AlertCircle className="w-5 h-5 mr-2" />
                 )}
                 {submitStatus === 'success' 
-                  ? 'Thank you! Your message has been sent successfully.' 
-                  : 'Sorry, there was an error sending your message. Please try again.'}
+                  ? tr('Thank you! Your message has been sent successfully.', 'Merci ! Votre message a bien été envoyé.')
+                  : tr('Sorry, there was an error sending your message. Please try again.', 'Désolé, une erreur est survenue. Veuillez réessayer.')}
               </div>
             )}
 
@@ -172,7 +176,7 @@ const Contact: React.FC = () => {
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Name *
+                    {tr('Name', 'Nom')} *
                   </label>
                   <input
                     type="text"
@@ -183,7 +187,7 @@ const Contact: React.FC = () => {
                     className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
                       errors.name ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                     }`}
-                    placeholder="Your name"
+                    placeholder={tr('Your name', 'Votre nom')}
                   />
                   {errors.name && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name}</p>}
                 </div>
@@ -201,7 +205,7 @@ const Contact: React.FC = () => {
                     className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white ${
                       errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                     }`}
-                    placeholder="your.email@example.com"
+                    placeholder={tr('your.email@example.com', 'votre.email@exemple.com')}
                   />
                   {errors.email && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.email}</p>}
                 </div>
@@ -209,7 +213,7 @@ const Contact: React.FC = () => {
 
               <div>
                 <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Subject *
+                  {tr('Subject', 'Sujet')} *
                 </label>
                 <select
                   id="subject"
@@ -220,18 +224,18 @@ const Contact: React.FC = () => {
                     errors.subject ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                   }`}
                 >
-                  <option value="">Select a subject</option>
-                  <option value="project">Project Collaboration</option>
-                  <option value="job">Job Opportunity</option>
-                  <option value="consultation">Consultation</option>
-                  <option value="other">Other</option>
+                  <option value="">{tr('Select a subject', 'Sélectionnez un sujet')}</option>
+                  <option value="project">{tr('Project Collaboration', 'Collaboration sur un projet')}</option>
+                  <option value="job">{tr('Job Opportunity', 'Offre d’emploi')}</option>
+                  <option value="consultation">{tr('Consultation', 'Consultation')}</option>
+                  <option value="other">{tr('Other', 'Autre')}</option>
                 </select>
                 {errors.subject && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.subject}</p>}
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Message *
+                  {tr('Message', 'Message')} *
                 </label>
                 <textarea
                   id="message"
@@ -242,7 +246,7 @@ const Contact: React.FC = () => {
                   className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none ${
                     errors.message ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                   }`}
-                  placeholder="Tell me about your project or inquiry..."
+                  placeholder={tr('Tell me about your project or inquiry...', 'Parlez-moi de votre projet ou de votre demande...')}
                 ></textarea>
                 {errors.message && <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.message}</p>}
               </div>
@@ -257,7 +261,7 @@ const Contact: React.FC = () => {
                 ) : (
                   <>
                     <Send className="w-5 h-5 mr-2" />
-                    Send Message
+                    {tr('Send Message', 'Envoyer le message')}
                   </>
                 )}
               </button>
@@ -268,12 +272,13 @@ const Contact: React.FC = () => {
           <div className="space-y-8">
             <div>
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                Let's connect
+                {tr("Let's connect", 'Restons en contact')}
               </h3>
               <p className="text-gray-600 dark:text-gray-400 mb-8">
-                I'm currently available for freelance work and full-time opportunities. 
-                If you have a project in mind or would like to discuss potential collaboration, 
-                I'd love to hear from you.
+                {tr(
+                  "I'm currently available for freelance work and full-time opportunities. If you have a project in mind or would like to discuss potential collaboration, I'd love to hear from you.",
+                  'Je suis disponible pour des missions freelance et des postes à temps plein. Vous avez un projet ou souhaitez discuter d’une collaboration ? Contactez-moi.'
+                )}
               </p>
             </div>
 
@@ -299,7 +304,7 @@ const Contact: React.FC = () => {
             {/* Social Links */}
             <div>
               <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                Follow me
+                {tr('Follow me', 'Suivez-moi')}
               </h4>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
@@ -321,10 +326,13 @@ const Contact: React.FC = () => {
             <div className="p-6 bg-gradient-to-r from-blue-50 to-emerald-50 dark:from-blue-900/20 dark:to-emerald-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
               <div className="flex items-center mb-2">
                 <div className="w-3 h-3 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Available for work</span>
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{tr('Available for work', 'Disponible pour travailler')}</span>
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                I'm currently accepting new projects and opportunities. Expected response time: 24 hours.
+                {tr(
+                  "I'm currently accepting new projects and opportunities. Expected response time: 24 hours.",
+                  'J’accepte actuellement de nouveaux projets et opportunités. Délai de réponse estimé : 24 heures.'
+                )}
               </p>
             </div>
           </div>

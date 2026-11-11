@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon, Code } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { useLanguage } from '../context/LanguageContext';
 import { scrollToSection } from '../utils/scrollToSection';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { language, toggleLanguage, tr } = useLanguage();
 
   const navItems = [
-    { label: 'Home', id: 'home' },
-    { label: 'About', id: 'about' },
-    { label: 'Projects', id: 'projects' },
-    { label: 'Skills', id: 'skills' },
-    { label: 'Contact', id: 'contact' },
+    { label: tr('Home', 'Accueil'), id: 'home' },
+    { label: tr('About', 'À propos'), id: 'about' },
+    { label: tr('Projects', 'Projets'), id: 'projects' },
+    { label: tr('Skills', 'Compétences'), id: 'skills' },
+    { label: tr('Contact', 'Contact'), id: 'contact' },
   ];
 
   useEffect(() => {
@@ -66,6 +68,14 @@ const Navbar: React.FC = () => {
 
           {/* Theme Toggle */}
           <div className="flex items-center space-x-4">
+            <button
+              onClick={toggleLanguage}
+              className="px-3 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors text-sm font-semibold"
+              aria-label={tr('Switch to French', 'Passer en anglais')}
+              title={tr('Switch to French', 'Passer en anglais')}
+            >
+              {language === 'en' ? 'FR' : 'EN'}
+            </button>
             <button
               onClick={toggleTheme}
               className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
