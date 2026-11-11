@@ -1,131 +1,38 @@
 import React from 'react';
-import { Code, Palette, Zap, Users, ShieldCheck } from 'lucide-react';
-import myImage from '../assets/me.jpg';
+import { CheckCircle2, Code2, Database, GraduationCap, ShieldCheck } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const About: React.FC = () => {
   const { tr } = useLanguage();
-  const highlights = [
-    {
-      icon: <Code className="w-6 h-6" />,
-      title: "Languages",
-      items: ["JavaScript", "TypeScript", "Java", "Python", "PHP"]
-    },
-    {
-      icon: <Palette className="w-6 h-6" />,
-      title: "Frontend",
-      items: ["React", "Angular", "Vue.js", "Tailwind CSS", "HTML5/CSS3"]
-    },
-    {
-      icon: <Zap className="w-6 h-6" />,
-      title: "Backend",
-      items: ["Spring Boot","Node.js", "Laravel", "Django", "MongoDB"]
-    },
-    {
-      icon: <Users className="w-6 h-6" />,
-      title: "DevOps",
-      items: ["Git", "Docker", "Jenkins", "CI/CD", "Linux"]
-    },
-    {
-      icon: <ShieldCheck className="w-6 h-6" />,
-      title: "Quality Assurance",
-      items: ["Robot Framework", "API Testing", "Functional Testing", "ISTQB CTFL preparation"]
-    }
+  const strengths = [
+    { icon: <Code2 />, title: tr('Full-stack engineering', 'Ingénierie full-stack'), text: tr('React, Angular and Spring Boot applications designed for maintainability and performance.', 'Applications React, Angular et Spring Boot pensées pour la maintenabilité et la performance.') },
+    { icon: <ShieldCheck />, title: tr('Quality built in', 'Qualité intégrée'), text: tr('Functional, API and automated testing to secure critical user journeys.', 'Tests fonctionnels, API et automatisés pour sécuriser les parcours critiques.') },
+    { icon: <Database />, title: tr('From data to delivery', 'De la donnée à la livraison'), text: tr('Clean architecture, databases, versioning and CI/CD practices.', 'Architecture propre, bases de données, versioning et pratiques CI/CD.') },
   ];
-
   return (
-    <section id="about" className="py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            {tr('About Me', 'À propos de moi')}
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-emerald-600 mx-auto"></div>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
-          <div className="space-y-6">
-            <div className="prose prose-lg text-gray-700 dark:text-gray-300">
-              <p className="mb-6">
-        {tr(
-          "I am a Full-Stack Developer and QA Engineer, and a Master's student in Information Systems Engineering. I have hands-on experience across the development lifecycle, from requirements and design to implementation, testing, and deployment. I build web applications with technologies such as Laravel, MySQL, Spring Boot, and React, and apply architectural practices that support clean, maintainable code.",
-          "Je suis développeur Full-Stack et ingénieur QA, et étudiant en Master Ingénierie des Systèmes d’Information. J’interviens sur l’ensemble du cycle de développement, de l’analyse des besoins à la conception, l’implémentation, les tests et le déploiement. Je crée des applications web avec Laravel, MySQL, Spring Boot et React, en appliquant des pratiques d’architecture favorisant un code clair et maintenable."
-        )}
-      </p>
-      <p className="mb-6">
-        {tr(
-          'I also focus on software quality: designing functional and API tests, automating test scenarios with Robot Framework, and checking role-based access and application workflows. I am currently preparing for the ISTQB Certified Tester Foundation Level (CTFL) exam.',
-          'Je m’intéresse également à la qualité logicielle : conception de tests fonctionnels et API, automatisation avec Robot Framework et vérification des rôles et parcours applicatifs. Je prépare actuellement l’examen ISTQB Certified Tester Foundation Level (CTFL).'
-        )}
-      </p>
-      <p>
-        {tr(
-          'I value collaboration, code reviews, and user-centered design, and I keep developing my skills across full-stack engineering and quality assurance.',
-          'J’accorde de l’importance au travail d’équipe, aux revues de code et à la conception centrée sur l’utilisateur. Je continue à développer mes compétences en ingénierie Full-Stack et en assurance qualité.'
-        )}
-              </p>
-            </div>
-
-            {/* Skills Grid */}
-            <div className="grid sm:grid-cols-2 gap-6 pt-8">
-              {highlights.map((category, index) => (
-                <div 
-                  key={index}
-                  className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                >
-                  <div className="flex items-center mb-4">
-                    <div className="p-2 bg-blue-100 dark:bg-blue-900 rounded-lg text-blue-600 dark:text-blue-400 mr-3">
-                      {category.icon}
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                      {tr(category.title, ({
-                        Languages: 'Langages',
-                        Frontend: 'Front-end',
-                        Backend: 'Back-end',
-                        DevOps: 'DevOps',
-                        'Quality Assurance': 'Assurance qualité'
-                      } as Record<string, string>)[category.title] ?? category.title)}
-                    </h3>
-                  </div>
-                  <ul className="space-y-1">
-                    {category.items.map((item, itemIndex) => (
-                      <li key={itemIndex} className="text-gray-600 dark:text-gray-400 text-sm">
-                        {tr(item, ({
-                          'ISTQB CTFL preparation': 'Préparation ISTQB CTFL',
-                          'API Testing': 'Tests API',
-                          'Functional Testing': 'Tests fonctionnels',
-                          'HTML5/CSS3': 'HTML5/CSS3'
-                        } as Record<string, string>)[item] ?? item)}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+    <section id="about" className="hero-grid relative overflow-hidden bg-slate-950 py-24 text-white">
+      <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-cyan-500/15 blur-[110px]" />
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        <div className="grid items-start gap-12 lg:grid-cols-[.8fr_1.2fr]">
+          <div className="lg:sticky lg:top-28">
+            <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.22em] text-cyan-700 dark:text-cyan-300">01 — {tr('Profile', 'Profil')}</p>
+            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">{tr('A builder who cares about the details.', 'Un profil technique, orienté résultat.')}</h2>
+            <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+              <GraduationCap className="h-7 w-7 text-cyan-600" />
+              <p className="mt-4 font-mono text-xs uppercase tracking-wider text-slate-500">{tr('Academic background', 'Formation')}</p>
+              <p className="mt-2 text-lg font-bold text-slate-900">{tr('Master in Information Systems Engineering', 'Master en Ingénierie des Systèmes d’Information')}</p>
+              <p className="mt-1 text-sm text-slate-500">Université Cadi Ayyad · Morocco</p>
             </div>
           </div>
-
-          {/* Image */}
-          <div className="lg:order-first">
-            <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl">
-                <img
-                
-                 src={myImage}
-                  alt="Professional headshot"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -left-4 w-20 h-20 bg-blue-400/20 rounded-full blur-xl"></div>
-              <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-emerald-400/20 rounded-full blur-xl"></div>
-            </div>
+          <div>
+            <p className="max-w-3xl text-xl leading-9 text-slate-200 sm:text-2xl">{tr('Full-stack developer and QA engineer with a Master’s degree in Information Systems Engineering. I turn business needs into robust, intuitive web applications—and verify that they work as expected.', 'Développeur full-stack et ingénieur QA, titulaire d’un Master en Ingénierie des Systèmes d’Information. Je transforme les besoins métier en applications web robustes et intuitives, puis je vérifie leur fiabilité.')}</p>
+            <p className="mt-6 max-w-3xl text-base leading-8 text-slate-400">{tr('My approach connects product development and software quality: clear requirements, thoughtful implementation, reliable tests and continuous improvement. This makes me a versatile partner for teams looking to build with confidence.', 'Mon approche relie développement produit et qualité logicielle : besoins clairs, implémentation soignée, tests fiables et amélioration continue. C’est un profil polyvalent pour les équipes qui veulent avancer avec confiance.')}</p>
+            <div className="mt-10 grid gap-4 sm:grid-cols-3">{strengths.map((item) => <article key={item.title} className="rounded-2xl border border-slate-200 bg-white p-5 transition hover:-translate-y-1 hover:border-cyan-300 hover:shadow-lg"><div className="inline-flex rounded-xl bg-cyan-100 p-2.5 text-cyan-700">{item.icon}</div><h3 className="mt-5 font-bold text-slate-900">{item.title}</h3><p className="mt-2 text-sm leading-6 text-slate-500">{item.text}</p></article>)}</div>
+            <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 border-t border-white/10 pt-7 text-sm font-medium text-slate-300"><span className="inline-flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-cyan-300" /> React · Angular · Spring Boot</span><span className="inline-flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-cyan-300" /> Robot Framework · API testing</span></div>
           </div>
         </div>
       </div>
     </section>
   );
 };
-
 export default About;

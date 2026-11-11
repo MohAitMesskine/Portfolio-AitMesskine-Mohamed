@@ -114,14 +114,16 @@ const Projects: React.FC = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-gray-900">
+    <section id="projects" className="relative overflow-hidden bg-slate-950 py-24 text-white">
+      <div className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-cyan-500/10 blur-[120px]" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        <div className="relative mb-16 max-w-3xl">
+          <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.22em] text-cyan-300">Selected work</p>
+          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl mb-4">
             {tr('Recent Projects', 'Projets récents')}
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-emerald-600 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <div className="mb-6 h-1 w-20 bg-gradient-to-r from-cyan-300 to-blue-500"></div>
+          <p className="max-w-2xl text-lg leading-8 text-slate-400">
             {tr(
               'Here are some of my recent projects that showcase my skills and passion for creating innovative solutions across different domains and technologies.',
               'Découvrez quelques projets qui illustrent mes compétences et mon intérêt pour la création de solutions innovantes avec différentes technologies.'
@@ -129,23 +131,23 @@ const Projects: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="relative grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
             <div 
               key={project.id}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden group"
+              className="group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.045] shadow-xl shadow-black/10 transition duration-300 hover:-translate-y-2 hover:border-cyan-300/40 hover:bg-white/[0.07]"
             >
               {/* Project Image */}
               <div className="relative overflow-hidden">
                 <img
                   src={project.image}
                   alt={project.title[language]}
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 {project.date && (
-                  <div className="absolute top-4 right-4 bg-white dark:bg-gray-800 px-2 py-1 rounded-full text-xs font-medium text-gray-600 dark:text-gray-400 flex items-center">
+                  <div className="absolute right-4 top-4 flex items-center rounded-full border border-white/15 bg-slate-950/80 px-2.5 py-1 text-xs font-medium text-slate-200 backdrop-blur">
                     <Calendar className="w-3 h-3 mr-1" />
                     {project.date}
                   </div>
@@ -154,10 +156,10 @@ const Projects: React.FC = () => {
 
               {/* Project Content */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <h3 className="mb-3 text-xl font-bold text-white transition-colors group-hover:text-cyan-300">
                   {project.title[language]}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm leading-relaxed">
+                <p className="mb-5 text-sm leading-relaxed text-slate-400">
                   {project.description[language]}
                 </p>
 
@@ -166,7 +168,7 @@ const Projects: React.FC = () => {
                   {project.technologies.map((tech, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs font-medium rounded-full"
+                      className="rounded-full border border-cyan-300/15 bg-cyan-300/10 px-2.5 py-1 text-xs font-medium text-cyan-100"
                     >
                       {tech}
                     </span>
@@ -179,7 +181,7 @@ const Projects: React.FC = () => {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-sm font-medium"
+                    className="flex flex-1 items-center justify-center rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-slate-200 transition hover:bg-white/10"
                   >
                     <Github className="w-4 h-4 mr-2" />
                     {tr('Code', 'Code')}
@@ -189,7 +191,7 @@ const Projects: React.FC = () => {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 flex items-center justify-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm font-medium"
+                      className="flex flex-1 items-center justify-center rounded-xl bg-cyan-300 px-4 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
                     >
                       <ExternalLink className="w-4 h-4 mr-2" />
                       {tr('Demo', 'Démo')}
@@ -202,12 +204,12 @@ const Projects: React.FC = () => {
         </div>
 
         {/* View More Button */}
-        <div className="text-center mt-12">
+        <div className="relative mt-12">
           <a
             href="https://github.com/MohAitMesskine?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-8 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 font-semibold rounded-lg hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 dark:hover:text-white transform hover:scale-105 transition-all duration-200"
+            className="inline-flex items-center rounded-full border border-cyan-300/50 px-6 py-3 font-semibold text-cyan-200 transition hover:bg-cyan-300 hover:text-slate-950"
           >
             <Github className="w-5 h-5 mr-2" />
             {tr('View All Projects on GitHub', 'Voir tous les projets sur GitHub')}

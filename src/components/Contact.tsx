@@ -106,7 +106,7 @@ const Contact: React.FC = () => {
     {
       icon: <MapPin className="w-6 h-6" />,
       label: 'Location',
-      value: 'Agadir,Souss-Massa,Morocco',
+      value: 'Morocco',
       href: '#'
     }
   ];
@@ -133,14 +133,15 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-white dark:bg-gray-900">
+    <section id="contact" className="hero-grid relative overflow-hidden bg-slate-950 py-24 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        <div className="relative text-center mb-16">
+          <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[.22em] text-cyan-300">06 — Contact</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             {tr('Get In Touch', 'Me contacter')}
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-emerald-600 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <div className="w-20 h-1 bg-gradient-to-r from-cyan-300 to-blue-500 mx-auto mb-6"></div>
+          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
             {tr(
               "I'm always interested in hearing about new opportunities and exciting projects. Let's discuss how we can work together to bring your ideas to life.",
               'Je suis toujours intéressé par de nouvelles opportunités et des projets stimulants. Échangeons sur la manière de concrétiser vos idées ensemble.'
@@ -148,7 +149,7 @@ const Contact: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="relative grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
@@ -271,10 +272,10 @@ const Contact: React.FC = () => {
           {/* Contact Information */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+              <h3 className="text-2xl font-bold text-white mb-6">
                 {tr("Let's connect", 'Restons en contact')}
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-8">
+              <p className="text-slate-400 mb-8">
                 {tr(
                   "I'm currently available for freelance work and full-time opportunities. If you have a project in mind or would like to discuss potential collaboration, I'd love to hear from you.",
                   'Je suis disponible pour des missions freelance et des postes à temps plein. Vous avez un projet ou souhaitez discuter d’une collaboration ? Contactez-moi.'
@@ -288,7 +289,7 @@ const Contact: React.FC = () => {
                 <a
                   key={index}
                   href={info.href}
-                  className="flex items-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group"
+                  className="flex items-center p-4 bg-white dark:bg-gray-800 rounded-lg hover:bg-slate-100 dark:hover:bg-gray-700 transition-colors group"
                 >
                   <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-lg text-blue-600 dark:text-blue-400 mr-4 group-hover:bg-blue-200 dark:group-hover:bg-blue-800 transition-colors">
                     {info.icon}
@@ -303,7 +304,7 @@ const Contact: React.FC = () => {
 
             {/* Social Links */}
             <div>
-              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              <h4 className="text-lg font-semibold text-white mb-4">
                 {tr('Follow me', 'Suivez-moi')}
               </h4>
               <div className="flex space-x-4">
@@ -313,7 +314,7 @@ const Contact: React.FC = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`p-3 bg-gray-100 dark:bg-gray-800 rounded-lg text-gray-600 dark:text-gray-400 ${social.color} transition-all duration-200 hover:scale-110`}
+                    className={`p-3 bg-white dark:bg-gray-800 rounded-lg text-gray-600 dark:text-gray-400 ${social.color} transition-all duration-200 hover:scale-110`}
                     aria-label={social.label}
                   >
                     {social.icon}

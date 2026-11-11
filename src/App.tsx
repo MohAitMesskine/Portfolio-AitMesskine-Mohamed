@@ -28,7 +28,7 @@ function Portfolio() {
     
     // Update document title
     document.title = tr(
-      'Ait Messkine Mohamed - Full-Stack Developer & QA Engineer',
+      'Ait Messkine Mohamed - Master ISI | Full-Stack Developer & QA Engineer',
       'Ait Messkine Mohamed - Développeur Full-Stack & Ingénieur QA'
     );
     document.documentElement.lang = language;
@@ -37,14 +37,14 @@ function Portfolio() {
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', tr(
-        'Full-Stack Developer and QA Engineer specializing in web applications, Robot Framework test automation, and software quality. Currently preparing for ISTQB CTFL.',
+        'Master ISI, Full-Stack Developer and QA Engineer specializing in React, Angular, Spring Boot, test automation and software quality.',
         'Développeur Full-Stack et ingénieur QA spécialisé dans les applications web, l’automatisation des tests avec Robot Framework et la qualité logicielle. Préparation ISTQB CTFL en cours.'
       ));
     } else {
       const meta = document.createElement('meta');
       meta.name = 'description';
       meta.content = tr(
-        'Full-Stack Developer and QA Engineer specializing in web applications, Robot Framework test automation, and software quality. Currently preparing for ISTQB CTFL.',
+        'Master ISI, Full-Stack Developer and QA Engineer specializing in React, Angular, Spring Boot, test automation and software quality.',
         'Développeur Full-Stack et ingénieur QA spécialisé dans les applications web, l’automatisation des tests avec Robot Framework et la qualité logicielle. Préparation ISTQB CTFL en cours.'
       );
       document.head.appendChild(meta);
