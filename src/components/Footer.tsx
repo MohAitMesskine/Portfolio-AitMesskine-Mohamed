@@ -1,101 +1,20 @@
 import React from 'react';
-import { ArrowUp, Github, Linkedin, Mail, Heart } from 'lucide-react';
-import { scrollToTop } from '../utils/scrollToSection';
+import { ArrowUpRight, Github, Linkedin, Mail, MapPin } from 'lucide-react';
+import { scrollToSection, scrollToTop } from '../utils/scrollToSection';
 import { useLanguage } from '../context/LanguageContext';
 
 const Footer: React.FC = () => {
   const { tr } = useLanguage();
-  const currentYear = new Date().getFullYear();
-
-  const socialLinks = [
-    {
-      icon: <Github className="w-5 h-5" />,
-      href: 'https://github.com/MohAitMesskine',
-      label: 'GitHub'
-    },
-    {
-      icon: <Linkedin className="w-5 h-5" />,
-      href: 'https://www.linkedin.com/in/mohamed-aitmeskine-0072aa219/',
-      label: 'LinkedIn'
-    },
-    {
-      icon: <Mail className="w-5 h-5" />,
-      href: 'mailto:aitmeskine.mohamed@gmail.com',
-      label: 'Email'
-    }
-  ];
-
-  return (
-    <footer className="bg-gray-900 dark:bg-black text-white py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center space-y-8">
-          {/* Back to Top Button */}
-          <button
-            onClick={scrollToTop}
-            className="p-3 bg-blue-600 hover:bg-blue-700 rounded-full text-white transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
-            aria-label="Back to top"
-          >
-            <ArrowUp className="w-6 h-6" />
-          </button>
-
-          {/* Social Links */}
-          <div className="flex space-x-6">
-            {socialLinks.map((social, index) => (
-              <a
-                key={index}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 bg-gray-800 hover:bg-gray-700 rounded-lg text-gray-300 hover:text-white transition-all duration-200 hover:scale-110"
-                aria-label={social.label}
-              >
-                {social.icon}
-              </a>
-            ))}
-          </div>
-
-          {/* Navigation Links */}
-          <div className="flex flex-wrap justify-center gap-8 text-sm">
-            <a href="#home" className="text-gray-400 hover:text-white transition-colors">
-              {tr('Home', 'Accueil')}
-            </a>
-            <a href="#about" className="text-gray-400 hover:text-white transition-colors">
-              {tr('About', 'À propos')}
-            </a>
-            <a href="#projects" className="text-gray-400 hover:text-white transition-colors">
-              {tr('Projects', 'Projets')}
-            </a>
-            <a href="#skills" className="text-gray-400 hover:text-white transition-colors">
-              {tr('Skills', 'Compétences')}
-            </a>
-            <a href="#contact" className="text-gray-400 hover:text-white transition-colors">
-              {tr('Contact', 'Contact')}
-            </a>
-          </div>
-
-          {/* Divider */}
-          <div className="w-full h-px bg-gray-800"></div>
-
-          {/* Copyright */}
-          <div className="text-center space-y-2">
-            <div className="flex items-center justify-center text-gray-400 text-sm">
-              <span>{tr('Made with', 'Créé avec')}</span>
-              <Heart className="w-4 h-4 mx-1 text-red-500 animate-pulse" />
-              <span>{tr('by Ait Messkine Mohamed', 'par Ait Messkine Mohamed')}</span>
-            </div>
-            <p className="text-gray-500 text-sm">
-              © {currentYear} Ait Messkine Mohamed. {tr('All rights reserved.', 'Tous droits réservés.')}
-            </p>
-          </div>
-
-          {/* Additional Info */}
-          <div className="text-center text-xs text-gray-500">
-            <p>{tr('Built with React, TypeScript, and Tailwind CSS', 'Réalisé avec React, TypeScript et Tailwind CSS')}</p>
-          </div>
-        </div>
+  const links = [{ label: tr('Profile', 'Profil'), id: 'about' }, { label: tr('Projects', 'Projets'), id: 'projects' }, { label: tr('Skills', 'Compétences'), id: 'skills' }, { label: tr('Contact', 'Contact'), id: 'contact' }];
+  return <footer className="relative overflow-hidden border-t border-white/10 bg-slate-950 text-white">
+    <div className="hero-grid absolute inset-0 opacity-30" />
+    <div className="relative mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-10">
+      <div className="grid gap-12 lg:grid-cols-[1.2fr_.8fr] lg:items-end">
+        <div><p className="font-mono text-xs font-medium uppercase tracking-[.22em] text-cyan-300">{tr('Let’s build with confidence', 'Construisons avec confiance')}</p><h2 className="mt-4 max-w-2xl text-3xl font-bold tracking-tight sm:text-5xl">{tr('Ready to bring a reliable digital product to life?', 'Prêt à donner vie à un produit digital fiable ?')}</h2><p className="mt-5 max-w-xl leading-7 text-slate-400">{tr('I combine full-stack engineering and quality assurance to turn ambitious ideas into dependable web experiences.', 'J’allie ingénierie full-stack et assurance qualité pour transformer les idées ambitieuses en expériences web fiables.')}</p><a href="mailto:aitmeskine.mohamed@gmail.com" className="mt-8 inline-flex items-center gap-3 rounded-full bg-cyan-300 px-6 py-3.5 font-semibold text-slate-950 transition hover:bg-cyan-200">{tr('Start a conversation', 'Démarrer une conversation')} <ArrowUpRight className="h-5 w-5" /></a></div>
+        <div className="rounded-2xl border border-white/10 bg-white/[.04] p-6 backdrop-blur"><p className="font-mono text-xs uppercase tracking-[.18em] text-cyan-300">{tr('Contact', 'Contact')}</p><a href="mailto:aitmeskine.mohamed@gmail.com" className="mt-4 block break-all text-lg font-bold transition hover:text-cyan-300">aitmeskine.mohamed@gmail.com</a><div className="mt-5 flex items-center gap-2 text-sm text-slate-400"><MapPin className="h-4 w-4 text-cyan-300" /> Morocco</div><div className="mt-7 flex gap-3">{[{ icon: Github, label: 'GitHub', href: 'https://github.com/MohAitMesskine' }, { icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/mohamed-aitmeskine-0072aa219/' }, { icon: Mail, label: 'Email', href: 'mailto:aitmeskine.mohamed@gmail.com' }].map(({ icon: Icon, label, href }) => <a key={label} href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noreferrer" aria-label={label} className="rounded-xl border border-white/10 bg-white/5 p-3 text-slate-300 transition hover:border-cyan-300 hover:bg-cyan-300 hover:text-slate-950"><Icon className="h-5 w-5" /></a>)}</div></div>
       </div>
-    </footer>
-  );
+      <div className="mt-16 flex flex-col gap-6 border-t border-white/10 pt-7 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between"><button onClick={scrollToTop} className="font-mono font-bold tracking-[.16em] text-white transition hover:text-cyan-300">MAM<span className="text-cyan-300">.</span></button><div className="flex flex-wrap gap-x-5 gap-y-2">{links.map(link => <button key={link.id} onClick={() => scrollToSection(link.id)} className="transition hover:text-cyan-300">{link.label}</button>)}</div><p>© {new Date().getFullYear()} Mohamed Ait Messkine</p></div>
+    </div>
+  </footer>;
 };
-
 export default Footer;
