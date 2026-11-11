@@ -16,7 +16,7 @@ const Hero: React.FC = () => {
         <div className="order-2 lg:order-1">
           {/* <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium tracking-wide text-cyan-200 backdrop-blur"><span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_#34d399]" />{tr('Available for new opportunities', 'Disponible pour de nouvelles opportunités')}</div> */}
           <p className="mb-5 font-mono text-sm uppercase tracking-[0.24em] text-cyan-300">{tr('Master ISI · Full-stack developer · QA engineer', 'Master ISI · Développeur full-stack · Ingénieur QA')}</p>
-          <h1 className="max-w-4xl text-5xl font-semibold leading-[0.96] tracking-tight sm:text-7xl lg:text-[5.35rem]">Mohamed<br /><span className="text-slate-400">Ait Messkine.</span></h1>
+          <h1 className="max-w-4xl text-5xl font-semibold leading-[0.96] tracking-tight sm:text-7xl lg:text-[5.35rem]">Mohamed<br /><span className="text-slate-400">Ait Messkine</span></h1>
           <p className="mt-8 max-w-xl text-lg leading-8 text-slate-300 sm:text-xl">{tr('I design reliable web products, from thoughtful interfaces to well-tested systems.', 'Je conçois des produits web fiables, des interfaces soignées aux systèmes rigoureusement testés.')}</p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <button onClick={() => scrollToSection('projects')} className="group inline-flex items-center justify-center gap-3 rounded-full bg-cyan-300 px-6 py-3.5 font-semibold text-slate-950 transition hover:bg-cyan-200">{tr('Explore my work', 'Découvrir mes projets')} <ArrowDownRight className="h-5 w-5 transition-transform group-hover:translate-y-1" /></button>
