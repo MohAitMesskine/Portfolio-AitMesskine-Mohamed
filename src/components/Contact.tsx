@@ -66,7 +66,7 @@ const Contact: React.FC = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!validateForm()) {
@@ -76,18 +76,12 @@ const Contact: React.FC = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // For demo purposes, we'll just show success
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
+    const emailSubject = encodeURIComponent(`[Portfolio] ${formData.subject}`);
+    const emailBody = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`);
+    window.location.href = `mailto:aitmeskine.mohamed@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+    setSubmitStatus('success');
+    setFormData({ name: '', email: '', subject: '', message: '' });
+    setIsSubmitting(false);
   };
 
   const contactInfo = [
@@ -168,7 +162,7 @@ const Contact: React.FC = () => {
                   <AlertCircle className="w-5 h-5 mr-2" />
                 )}
                 {submitStatus === 'success' 
-                  ? tr('Thank you! Your message has been sent successfully.', 'Merci ! Votre message a bien été envoyé.')
+                  ? tr('Your email application has opened with your message ready to send.', 'Votre application e-mail est ouverte avec votre message prêt à être envoyé.')
                   : tr('Sorry, there was an error sending your message. Please try again.', 'Désolé, une erreur est survenue. Veuillez réessayer.')}
               </div>
             )}

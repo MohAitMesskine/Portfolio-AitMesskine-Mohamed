@@ -9,7 +9,7 @@ const Skills: React.FC = () => {
   const technical = [
     { icon: <Braces />, title: tr('Front-end development', 'Développement front-end'), items: ['React', 'Angular', 'Vue.js', 'TypeScript', 'Tailwind CSS', 'HTML5 / CSS3'] },
     { icon: <Database />, title: tr('Back-end & data', 'Back-end & données'), items: ['Spring Boot', 'Laravel', 'Node.js', 'Django', 'MySQL', 'MongoDB'] },
-    { icon: <ShieldCheck />, title: tr('Testing & delivery', 'Testing & livraison'), items: ['Robot Framework', 'API Testing', 'Functional Testing', 'Git', 'Docker', 'Jenkins / CI-CD'] },
+    { icon: <ShieldCheck />, title: tr('Testing & delivery', 'Testing & livraison'), items: ['Robot Framework', 'Cypress', 'API Testing', 'Functional Testing', 'Git', 'Docker', 'Jenkins / CI-CD'] },
   ];
   const education = [
     { institution: 'Université Cadi Ayyad', degree: tr('Master in Information Systems Engineering', 'Master Ingénierie des Systèmes d’Information'), period: '2024 – 2026', place: tr('Marrakech, Morocco', 'Marrakech, Maroc') },
